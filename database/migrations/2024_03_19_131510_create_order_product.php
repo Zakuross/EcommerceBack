@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('content', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table) {
             $table->integer('quantity');
+            $table->foreignUuid('product_id');
+            $table->foreignUuid('order_id');
 
         });
     }

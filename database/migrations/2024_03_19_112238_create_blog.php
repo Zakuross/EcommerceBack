@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->foreignUuid('user_id')->constrained('users', 'uuid');
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->string('content');
-            $table->date('date');
+            $table->timestamps();
         });
     }
 

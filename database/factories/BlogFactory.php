@@ -17,7 +17,7 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content'=>$this->faker->sentence(15, true)
         ];
     }
 }
