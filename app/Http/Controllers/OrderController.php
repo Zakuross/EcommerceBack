@@ -28,37 +28,37 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store(OrderRequest $request)
-    {
-        $orders = Order::create($request->all());
-        $orders = OrderResource::make($orders);
+//    public function store(OrderRequest $request)
+//    {
+//        $orders = Order::create($request->safe()->except('products'));
+//        $orders = OrderResource::make($orders);
+//
+//        return response()->json([
+//            'orders'=>$orders
+//        ]);
+//    }
 
-        return response()->json([
-            'orders'=>$orders
-        ]);
-    }
+//    public function update($id, OrderRequest $request)
+//    {
+//        $orders = Order::find($id);
+//        $orders->update($request->all());
+//        $orders->save();
+//        $orders = OrderResource::make($orders);
+//
+//        return response()->json([
+//            'orders'=>$orders
+//        ]);
+//
+//    }
 
-    public function update($id, OrderRequest $request)
-    {
-        $orders = Order::find($id);
-        $orders->update($request->all());
-        $orders->save();
-        $orders = OrderResource::make($orders);
-
-        return response()->json([
-            'orders'=>$orders
-        ]);
-
-    }
-
-    public function destroy($id)
-    {
-        $orders = Order::find($id);
-        $orders->delete();
-
-        return response()->json([
-            'orders'=>$orders
-        ]);
-
-    }
+//    public function destroy($id)
+//    {
+//        $orders = Order::find($id);
+//        $orders->delete();
+//
+//        return response()->json([
+//            'orders'=>$orders
+//        ]);
+//
+//    }
 }

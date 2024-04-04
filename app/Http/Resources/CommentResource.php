@@ -16,9 +16,9 @@ class CommentResource extends JsonResource
     {
         return [
             'id'=>$this->resource->id,
+            'user_id'=>$this->resource->user_id,
+            'product_id'=>$this->resource->product_id,
             'comment'=>$this->resource->comment,
-            'user_id'=>new UserResource($this->resource->user),
-            'product_id'=>new ProductResource($this->resource->product),
         ];
     }
 }
