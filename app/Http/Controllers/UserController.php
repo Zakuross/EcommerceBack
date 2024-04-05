@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
 
         $users = UserResource::collection(User::all());
@@ -20,7 +21,7 @@ class UserController extends Controller
 
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
 
         $users=new UserResource(User::find($id));
@@ -31,7 +32,7 @@ class UserController extends Controller
 
     }
 
-    public function store(UserRequest $request)
+    public function store(UserRequest $request): JsonResponse
     {
 
         $users = User::create($request->all());
@@ -43,7 +44,7 @@ class UserController extends Controller
 
     }
 
-    public function update($id, UserRequest $request)
+    public function update($id, UserRequest $request): JsonResponse
     {
 
         $users=User::find($id);
@@ -56,7 +57,7 @@ class UserController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
 
         $users = User::find($id);

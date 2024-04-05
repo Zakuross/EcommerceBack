@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BlogRequest;
 use App\Http\Resources\BlogResource;
 use App\Models\Blog;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $blogs = BlogResource::collection(Blog::all());
 
@@ -29,7 +33,7 @@ class BlogController extends Controller
 
     }
 
-    public function store(BlogRequest $request)
+    public function store(BlogRequest $request): JsonResponse
     {
         $blogs = Blog::create($request->all());
 
@@ -41,7 +45,7 @@ class BlogController extends Controller
 
     }
 
-    public function update($id, BlogRequest $request)
+    public function update($id, BlogRequest $request): JsonResponse
     {
         $blogs = Blog::find($id);
         $blogs->update($request->all());
@@ -54,7 +58,7 @@ class BlogController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $blogs = Blog::find($id);
         $blogs->delete();

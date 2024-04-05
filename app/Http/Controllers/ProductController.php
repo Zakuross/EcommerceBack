@@ -6,19 +6,20 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ServiceRequest;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ServiceResource;
+use Illuminate\Http\JsonResponse;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $products = Product::orderBy('created_at', 'DESC')->get();
         return $products;
 
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $products = new ProductResource(Product::find($id));
 
@@ -27,7 +28,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): JsonResponse
     {
         $products = Product::create($request->all());
         $products = ServiceResource::make($products);
@@ -37,7 +38,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update($id, ProductRequest $request)
+    public function update($id, ProductRequest $request): JsonResponse
     {
         $products = Product::find($id);
         $products->update($request->all());
@@ -49,7 +50,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $products = Product::find($id);
         $products->delete();

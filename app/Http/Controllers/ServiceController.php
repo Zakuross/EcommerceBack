@@ -19,7 +19,7 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $services = Service::find($id);
         $services = ServiceResource::make($services);
@@ -29,7 +29,7 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function store(ServiceRequest $request)
+    public function store(ServiceRequest $request): JsonResponse
     {
         $services = Service::create($request->all());
 
@@ -40,7 +40,7 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function update($id, ServiceRequest $request)
+    public function update($id, ServiceRequest $request): JsonResponse
     {
         $services = Service::find($id);
         $services->update($request->all());
@@ -52,7 +52,7 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $services = Service::find($id);
         $services->delete();

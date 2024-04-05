@@ -7,6 +7,7 @@ use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\OrderController;
 use \App\Http\Controllers\BlogController;
+use \App\Http\Controllers\AuthController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ use Illuminate\Support\Facades\Route;
 //
 //
 //});
+
+Route::get('login', [AuthController::class, 'login']);
+
+
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 Route::post('products', [ProductController::class, 'store']);
