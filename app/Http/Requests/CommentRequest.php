@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CommentRequest extends FormRequest
 {
@@ -27,4 +29,26 @@ class CommentRequest extends FormRequest
             'comment'=>['required'],
         ];
     }
+
+    public function messages() {
+        return [
+            'user_id.required' => 'Un user_id est obligatoire',
+            'user_id.uuid' => 'Un user_id doit être un UUID valide',
+            'product_id.required'=> 'Un product_id  est obligatoire',
+            'product_id.uuid'=> 'Un product_id  doit être un UUID valide',
+            'comment.required'=> 'Un commentaire  est obligatoire'
+        ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = [
+            'success' => false,
+            'message' => 'Validation Error',
+            'data' => $validator->errors(),
+        ];
+
+        throw new HttpResponseException(response()->json($response, 422));
+    }
+
 }

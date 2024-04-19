@@ -28,10 +28,44 @@ use Illuminate\Support\Facades\Route;
 //
 //
 //});
+Route::group(['middleware' => 'auth:sanctum'], function () {
+
+    Route::post('categories', [CategoryController::class, 'store']);
+    Route::put('categories/{id}', [CategoryController::class, 'update']);
+    Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
+
+    Route::post('products', [ProductController::class, 'store']);
+    Route::put('products/{id}', [ProductController::class, 'update']);
+    Route::delete('products/{id}', [ProductController::class, 'destroy']);
+
+    Route::post('services', [ServiceController::class, 'store']);
+    Route::put('services/{id}', [ServiceController::class, 'update']);
+    Route::delete('services/{id}', [ServiceController::class, 'destroy']);
+
+    Route::post('blogs', [BlogController::class, 'store']);
+    Route::put('blogs/{id}', [BlogController::class, 'update']);
+    Route::delete('blogs/{id}', [BlogController::class, 'destroy']);
+
+    Route::post('product_user', [CommentController::class, 'store']);
+    Route::put('product_user/{id}', [CommentController::class, 'update']);
+    Route::delete('product_user/{id}', [CommentController::class, 'destroy']);
+
+    Route::post('orders', [OrderController::class, 'store']);
+    Route::put('orders/{id}', [OrderController::class, 'update']);
+    Route::delete('orders/{id}', [OrderController::class, 'destroy']);
+
+
+
+
+
+});
 
 // Public routes Authentication
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
 
 // Public routes Product
 Route::controller(ProductController::class)->group(function (){
@@ -39,9 +73,6 @@ Route::controller(ProductController::class)->group(function (){
     Route::get('products/{id}', 'show');
 });
 
-Route::post('products', [ProductController::class, 'store']);
-Route::put('products/{id}', [ProductController::class, 'update']);
-Route::delete('products/{id}', [ProductController::class, 'destroy']);
 
 // Public routes Category
 Route::controller(CategoryController::class)->group(function (){
@@ -49,20 +80,17 @@ Route::controller(CategoryController::class)->group(function (){
     Route::get('categories/{id}', 'show');
 });
 
-Route::post('categories', [CategoryController::class, 'store']);
-Route::put('categories/{id}', [CategoryController::class, 'update']);
-Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
-
 
 // Public routes User
 Route::controller(UserController::class)->group(function (){
     Route::get('users', 'index');
     Route::get('users/{id}', 'show');
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
 });
 
-Route::post('users', [UserController::class, 'store']);
-Route::put('users/{id}', [UserController::class, 'update']);
-Route::delete('users/{id}', [UserController::class, 'destroy']);
+
 
 
 // Public routes Service
@@ -71,9 +99,7 @@ Route::controller(ServiceController::class)->group(function (){
     Route::get('services/{id}', 'show');
 });
 
-Route::post('services', [ServiceController::class, 'store']);
-Route::put('services/{id}', [ServiceController::class, 'update']);
-Route::delete('services/{id}', [ServiceController::class, 'destroy']);
+
 
 
 // Public routes Blog
@@ -82,9 +108,7 @@ Route::controller(BlogController::class)->group(function (){
     Route::get('blogs/{id}', 'show');
 });
 
-Route::post('blogs', [BlogController::class, 'store']);
-Route::put('blogs/{id}', [BlogController::class, 'update']);
-Route::delete('blogs/{id}', [BlogController::class, 'destroy']);
+
 
 
 // Public routes Comment
@@ -93,9 +117,7 @@ Route::controller(CommentController::class)->group(function (){
     Route::get('product_user/{id}', 'show');
 });
 
-Route::post('product_user', [CommentController::class, 'store']);
-Route::put('product_user/{id}', [CommentController::class, 'update']);
-Route::delete('product_user/{id}', [CommentController::class, 'destroy']);
+
 
 
 // Public routes Order
@@ -104,8 +126,6 @@ Route::controller(OrderController::class)->group(function (){
     Route::get('orders/{id}','show');
 });
 
-Route::post('orders', [OrderController::class, 'store']);
-Route::put('orders/{id}', [OrderController::class, 'update']);
-Route::delete('orders/{id}', [OrderController::class, 'destroy']);
+
 
 
