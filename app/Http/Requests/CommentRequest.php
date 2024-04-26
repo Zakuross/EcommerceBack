@@ -32,10 +32,6 @@ class CommentRequest extends FormRequest
 
     public function messages() {
         return [
-            'user_id.required' => 'Un user_id est obligatoire',
-            'user_id.uuid' => 'Un user_id doit être un UUID valide',
-            'product_id.required'=> 'Un product_id  est obligatoire',
-            'product_id.uuid'=> 'Un product_id  doit être un UUID valide',
             'comment.required'=> 'Un commentaire  est obligatoire'
         ];
     }
